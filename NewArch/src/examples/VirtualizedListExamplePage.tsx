@@ -196,9 +196,17 @@ export const VirtualizedListExamplePage: React.FunctionComponent<{navigation?: a
     container: {
       height: 300,
       width: 500,
-      paddingHorizontal: 5,
+      paddingHorizontal: 8,
+      paddingVertical: 6,
       borderWidth: 1,
       borderColor: '#8D8D8D',
+    },
+    focusWrapper: {
+      paddingLeft: 12,
+      paddingTop: 12,
+      paddingRight: 12,
+      paddingBottom: 16,
+      marginBottom: 12,
     },
     selectionContainer: {
       marginLeft: 30,
@@ -221,6 +229,7 @@ export const VirtualizedListExamplePage: React.FunctionComponent<{navigation?: a
       padding: 5,
       paddingHorizontal: 10,
       marginVertical: 3,
+      marginHorizontal: 6,
       display: 'flex',
       flexDirection: 'row',
     },
@@ -229,6 +238,7 @@ export const VirtualizedListExamplePage: React.FunctionComponent<{navigation?: a
       padding: 5,
       paddingHorizontal: 10,
       marginVertical: 3,
+      marginHorizontal: 6,
       backgroundColor: colors.primary,
     },
     title: {
@@ -344,19 +354,22 @@ export const VirtualizedListExamplePage: React.FunctionComponent<{navigation?: a
         <ScrollView horizontal={true}>
           <View
             ref={firstVirtualizedListRef}
-            style={styles.container}
-            accessibilityLabel="VirtualizedList container">
-            <VirtualizedList
-              accessibilityRole="list"
-              data={DATA}
-              initialNumToRender={10}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.title}
-              getItemCount={getItemCount}
-              getItem={getItem}
-              accessibilityLabel={'A simple VirtualizedList'}
-              focusable={true}
-            />
+            style={styles.focusWrapper}
+            accessibilityLabel="VirtualizedList container"
+            focusable={true}>
+            <View style={styles.container}>
+              <VirtualizedList
+                accessibilityRole="list"
+                data={DATA}
+                initialNumToRender={10}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.title}
+                getItemCount={getItemCount}
+                getItem={getItem}
+                accessibilityLabel={'A simple VirtualizedList'}
+                focusable={false}
+              />
+            </View>
           </View>
         </ScrollView>
       </Example>
